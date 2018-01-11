@@ -1,0 +1,14 @@
+{
+  "name": "orgranigramm",
+  "version": "1.0.0",
+  "description": "This tool is a school project for the subject BO.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Felix Kronsteiner, Hannes Gerstmayr, Michael Helcig, Christian Strassmayr",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.7.10"
+  }
+}
