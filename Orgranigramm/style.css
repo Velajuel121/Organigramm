@@ -54,6 +54,16 @@ img:hover {
     padding-top: 150px;
 }
 
+#reload {
+    float: right;
+}
+
+#imgReload {
+    width: 20px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
 #imgStart, #imgAddJobs, #imgViewJobs, #imgViewStaff, #imgAddStaff {
     width: 110px;
 }
