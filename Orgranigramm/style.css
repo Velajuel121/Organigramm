@@ -64,6 +64,32 @@ img:hover {
     padding-top: 10px;
 }
 
+#jobsTableDiv {
+    padding-top: 20px;
+}
+#jobsTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#jobsTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: darkgray;
+    color: white;
+}
+
+#jobs tr:hover {
+    background-color: #ddd;
+}
+
+#jobs td, #customers th {
+     border: 1px solid #ddd;
+     padding: 8px;
+ }
+
+
 #imgStart, #imgAddJobs, #imgViewJobs, #imgViewStaff, #imgAddStaff {
     width: 110px;
 }
