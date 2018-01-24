@@ -6,7 +6,7 @@
     <title>Organigrammer</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styleTables.css"/>
+    <link rel="stylesheet" type="text/css" href="styleTables.css" />
     <script src="jobTable.js"></script>
 
 </head>
@@ -14,7 +14,7 @@
 
 <body>
     <div id="container">
-       
+
         <div id="start">
             <a href="chooseOptions.html">
                 <img id="imgStart" src="img/start.svg" />
@@ -26,8 +26,10 @@
         <div>
             <h2>Erstellen Sie eine Liste der Jobs die Sie zu vergeben haben</h2>
         </div>
-        <h2>Verfügbare Jobs</h2>
+        <h2>VerfÃ¼gbare Jobs</h2>
         <button onclick="newRow()">Create New Job</button>
+        <button onclick="view()">Load</button>
+
         <table id="jobs">
             <tr>
                 <th>Nummer</th>
@@ -36,9 +38,96 @@
                 <th>Bezahlung</th>
                 <th>verfuegbar Seit</th>
             </tr>
-           
+
         </table>
+        <div id="newtable"></div>
     </div>
+    <script>
+        function view() {
+            const storage = require('electron-json-storage');
+            storage.get('jobs', function (error, data) {
+                if (error) throw error;
+                console.log(data.length);
+
+
+                // get handle on div
+                var container = document.getElementById("newtable");
+                // create table element
+                var table = document.createElement('table');
+                table.id="jobs";
+                var tbody = document.createElement('tbody');
+                /*
+                // loop array
+                for (i = 0; i < orderArray.length; i++) {
+                    // get inner array
+                    var vals = orderArray[i];
+                    // create tr element
+                    var row = document.createElement('tr');
+                    // loop inner array
+                    for (var b = 0; b < vals.length; b++) {
+                        // create td element
+                        var cell = document.createElement('td');
+                        // set text
+                        cell.textContent = vals[b];
+                        // append td to tr
+                        row.appendChild(cell);
+                    }
+                    //append tr to tbody
+                    tbody.appendChild(row);
+                }
+                // append tbody to table
+                table.appendChild(tbody);
+                // append table to container
+                container.appendChild(table);
+
+
+                */
+                for (var i = 0; i < data.length; i++) {
+                    var row = document.createElement('tr');
+                    for (var prop in data[i]) {
+                        var cell = document.createElement('td');
+                        if (data[i].hasOwnProperty(prop)) {
+                          //  document.write(data[i][prop] + " ");
+                            cell.textContent =data[i][prop];
+                            row.appendChild(cell);
+                        }
+                    }
+                    tbody.appendChild(row);
+
+                   // document.write("<br>");
+                }
+                table.appendChild(tbody);
+                container.appendChild(table);
+
+                /*  Object.keys(data).map(key => {
+                      console.log(data[key].length);
+                      for(i=0; i<data[key].length; i++){
+                          document.write(data[i]);
+                      }
+                          document.write("<br>");
+      console.log(data[key]);
+    });
+  
+                 for(i=0; i<data.length; i++){
+                      for(j=0; j<data[i].length; j++){
+                         document.write(data[i][j]);
+                      }
+                          document.write("<br>");
+                  }
+                  console.log("Data: "+data);*/
+            });
+
+            /*
+            for(j=0; j<jobs.length; j++){
+                for(i=0; i<jobs[j].length; i++){
+                    print("Text: "+ jobs[j][i]);
+                    //System.printf('Text:  + %15', details[j][i]);
+               // document.write('Text:  + %15', details[j][i]);
+                }
+                    document.write("<br>");
+            }*/
+        }
+    </script>
 </body>
 
 </html>
