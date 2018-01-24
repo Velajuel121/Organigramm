@@ -11,22 +11,19 @@
 
 <body>
     <div id="container">
-
-        <div id="start">
-            <a href="chooseOptions.html">
-                <img id="imgStart" src="img/start.svg" />
+        <div id="reload">
+            <a>
+                <img id="imgReload" src="img/reload.svg" onClick="view()" />
             </a>
         </div>
-        <div id="title">
-            <h1>Organigramm</h1>
-        </div>
         <div>
-            <h2>Erstellen Sie eine Liste der Jobs die Sie zu vergeben haben</h2>
+            <a href="chooseOptions.html">
+                <img id="imgBack" src="img/back.svg" />
+            </a>
         </div>
-        <h2>Verfügbare Jobs</h2>
-        <button onclick="location.href='addStaff.html'">Create New Worker</button>
-        <button onclick="view()">Load</button>
+        <h2>Verfügbare Mitarbeiter</h2>
         <div id="tableData"></div>
+        <button onclick="location.href='addStaff.html'">Add new Worker</button>
     </div>
     <script>
         function view() {
@@ -37,28 +34,28 @@
                 var container = document.getElementById("tableData");
                 var table = document.createElement('table');
                 var tbody = document.createElement('tbody');
-                
+
                 var row = document.createElement('tr');
-                var head=document.createElement('th');
-                head.textContent ="Bezeichnung";
+                var head = document.createElement('th');
+                head.textContent = "Bezeichnung";
                 row.appendChild(head);
-                var head=document.createElement('th');
-                head.textContent ="Kenntnisse";
+                var head = document.createElement('th');
+                head.textContent = "Kenntnisse";
                 row.appendChild(head);
-                var head=document.createElement('th');
-                head.textContent ="Bezahlung";
+                var head = document.createElement('th');
+                head.textContent = "Bezahlung";
                 row.appendChild(head);
-                var head=document.createElement('th');
-                head.textContent ="Priorität";
+                var head = document.createElement('th');
+                head.textContent = "Priorität";
                 row.appendChild(head);
                 tbody.appendChild(row);
-               
+
                 for (var i = 0; i < data.length; i++) {
                     var row = document.createElement('tr');
                     for (var prop in data[i]) {
                         var cell = document.createElement('td');
                         if (data[i].hasOwnProperty(prop)) {
-                            cell.textContent =data[i][prop];
+                            cell.textContent = data[i][prop];
                             row.appendChild(cell);
                         }
                     }
@@ -70,4 +67,5 @@
         }
     </script>
 </body>
+
 </html>
