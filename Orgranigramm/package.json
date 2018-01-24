@@ -9,8 +9,6 @@
   "author": "Felix Kronsteiner, Hannes Gerstmayr, Michael Helcig, Christian Strassmayr",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.7.10",
-    "electron-json-storage": "^4.0.2",
-    "electron-storage": "^1.0.7"
+    "electron": "^1.7.10"
   }
 }
