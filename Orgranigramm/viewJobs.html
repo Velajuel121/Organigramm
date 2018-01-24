@@ -6,15 +6,15 @@
     <title>Organigrammer</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styleTables.css"/>
+    <script src="jobTable.js"></script>
+
 </head>
+
 
 <body>
     <div id="container">
-        <div id="reload">
-            <a>
-                <img id="imgReload" src="img/reload.svg" onClick="window.location.reload()"/>
-            </a>
-        </div>
+       
         <div id="start">
             <a href="chooseOptions.html">
                 <img id="imgStart" src="img/start.svg" />
@@ -26,6 +26,18 @@
         <div>
             <h2>Erstellen Sie eine Liste der Jobs die Sie zu vergeben haben</h2>
         </div>
+        <h2>Verfügbare Jobs</h2>
+        <button onclick="newRow()">Create New Job</button>
+        <table id="jobs">
+            <tr>
+                <th>Nummer</th>
+                <th>Bezeichnung</th>
+                <th>Programmiersprachen</th>
+                <th>Bezahlung</th>
+                <th>verfuegbar Seit</th>
+            </tr>
+           
+        </table>
     </div>
 </body>
 
