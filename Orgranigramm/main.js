@@ -27,5 +27,5 @@ app.on('ready', function(){
     app.quit();
   });
 
-  //mainWindow.setMenu(null);
+  mainWindow.setMenu(null);
 });
