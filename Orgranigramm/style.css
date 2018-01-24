@@ -10,6 +10,7 @@ h1 {
     color: darkgray;
     font-size: 40px;
     text-align: center;
+
 }
 
 h2 {
@@ -53,11 +54,6 @@ img:hover {
     padding-top: 150px;
 }
 
-#imgStart,
-#imgAddJobs,
-#imgViewJobs {
-    width: 100px;
-}
 #reload {
     float: right;
 }
@@ -83,6 +79,7 @@ img:hover {
 ::-webkit-scrollbar {
     display: none;
 }
+
 
 input {
     width: 50%;
