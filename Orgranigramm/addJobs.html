@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Organigrammer</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Job hinzufügen</h1>
+    <div id="container">
+        <div>
+            <a href="index.html">
+                <img id="imgBack" src="img/back.svg" />
+            </a>
+        </div>
+        <div>
+            <table align="center">
+                <tr>
+                    <td width="(100/2)%">Bezeichnung</td>
+                    <td width="(100/2)%"><input type="text" name="bezeichnung" id="bezeichnung"></td>
+                </tr>
+                <tr>
+                    <td width="(100/2)%">Kenntnisse</td>
+                    <td width="(100/2)%"><input type="text" name="kenntnisse" id="kenntnisse"></td>
+                </tr>
+                <tr>
+                    <td width="(100/2)%">Bezahlung</td>
+                    <td width="(100/2)%"><input type="text" name="bezahlung" id="bezahlung"></td>
+                </tr>
+                <tr>
+                    <td width="(100/2)%">Priorität</td>
+                    <td width="(100/2)%"><input type="text" name="priority" id="priority"></td>
+                </tr>
+            </table>
+            <button type="button" onclick="confirm()">Bestätigen</button>
+        </div>
+    </div>
+    <script>
+        var remote = require('electron').remote;
+        document.addEventListener('keydown', function(e) {
+            if (e.which === 123) {
+                remote.getCurrentWindow().webContents.openDevTools();
+            } else if (e.which === 116) {
+                location.reload();
+            }
+        });
+
+        function confirm() {
+            var b = document.getElementById('bezeichnung').value;
+            var k = document.getElementById('kenntnisse').value;
+            var pay = document.getElementById('bezahlung').value;
+            var prio = document.getElementById('priority').value;
+
+            const storage = require('electron-json-storage');
+
+            storage.has('jobs', function(error, hasKey) {
+                if (error) throw error;
+                if (hasKey) {
+                    storage.get('jobs', function(error, data) {
+                        if (error) throw error;
+                        data.push({
+                            lable: b,
+                            skills: k,
+                            pay: pay,
+                            priority: prio
+                        });
+                        storage.set('jobs', data, (err) => {
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
+                    });
+                }
+                if (!hasKey) {
+                    var jobs = [{
+                        lable: b,
+                        skills: k,
+                        pay: pay,
+                        priority: prio
+                    }];
+                    storage.set('jobs', jobs, (err) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            });
+            document.getElementById('bezeichnung').value = "";
+            document.getElementById('kenntnisse').value = "";
+            document.getElementById('bezahlung').value = "";
+            document.getElementById('priority').value = "";
+        }
+    </script>
+</body>
+
+</html>
