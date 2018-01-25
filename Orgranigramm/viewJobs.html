@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Organigrammer</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+    <div id="container">
+        <div id="reload">
+            <a>
+                <img id="imgReload" src="img/reload.svg" onClick="view()" />
+            </a>
+        </div>
+        <div>
+            <a href="chooseOptions.html">
+                <img id="imgBack" src="img/back.svg" />
+            </a>
+        </div>
+        <h2>Verfügbare Jobs</h2>
+        <div id="tableData"></div>
+        <button onclick="location.href='addJobs.html'">Create New Job</button>
+    </div>
+    <script>
+        function view() {
+            const storage = require('electron-json-storage');
+            storage.get('jobs', function (error, data) {
+                if (error) throw error;
+
+                var container = document.getElementById("tableData");
+                var table = document.createElement('table');
+                var tbody = document.createElement('tbody');
+
+                var row = document.createElement('tr');
+                var head = document.createElement('th');
+                head.textContent = "Bezeichnung";
+                row.appendChild(head);
+                var head = document.createElement('th');
+                head.textContent = "Kenntnisse";
+                row.appendChild(head);
+                var head = document.createElement('th');
+                head.textContent = "Bezahlung";
+                row.appendChild(head);
+                var head = document.createElement('th');
+                head.textContent = "Priorität";
+                row.appendChild(head);
+                tbody.appendChild(row);
+
+                for (var i = 0; i < data.length; i++) {
+                    var row = document.createElement('tr');
+                    for (var prop in data[i]) {
+                        var cell = document.createElement('td');
+                        if (data[i].hasOwnProperty(prop)) {
+                            cell.textContent = data[i][prop];
+                            row.appendChild(cell);
+                        }
+                    }
+                    tbody.appendChild(row);
+                }
+                table.appendChild(tbody);
+                container.appendChild(table);
+            });
+        }
+    </script>
+</body>
+
+</html>
