@@ -82,11 +82,14 @@ img:hover {
     display: none;
 }
 
-
+.centerButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 button {
     padding-top: 20px;
-    margin-left: 44%;
-    margin-right: 44%;
     background-color: darkgray;
     border: none;
     color: white;
@@ -98,6 +101,7 @@ button {
     border-radius: 3px;
     opacity: 0.5;
     transition-duration: 0.4s;
+    padding: 5px 10px;
 }
 
 button:hover {
