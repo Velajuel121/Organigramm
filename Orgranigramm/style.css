@@ -48,6 +48,7 @@ img {
 
 img:hover {
     opacity: 1.0;
+    transition-duration: 0.4s;
 }
 
 #start {
@@ -79,4 +80,26 @@ img:hover {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+
+button {
+    padding-top: 20px;
+    margin-left: 44%;
+    margin-right: 44%;
+    background-color: darkgray;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 3px;
+    opacity: 0.5;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    opacity: 1;
 }

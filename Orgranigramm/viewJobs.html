@@ -13,7 +13,7 @@
     <div id="container">
         <div id="reload">
             <a>
-                <img id="imgReload" src="img/reload.svg" onClick="view()" />
+                <img id="imgReload" src="img/reload.svg" onClick="window.location.reload()" />
             </a>
         </div>
         <div>
@@ -23,15 +23,15 @@
         </div>
         <h2>Verfügbare Jobs</h2>
         <div id="tableData"></div>
-        <button onclick="location.href='addJobs.html'">Create New Job</button>
+        <button onclick="location.href='addJobs.html'">Beruf hinzufügen</button>
     </div>
     <script>
+        window.onload = view;
         function view() {
             const storage = require('electron-json-storage');
             bubbleSort();
             storage.get('jobs', function (error, data) {
                 if (error) throw error;
-
                 var container = document.getElementById("tableData");
                 var table = document.createElement('table');
                 var tbody = document.createElement('tbody');
@@ -52,8 +52,17 @@
                 tbody.appendChild(row);
 
 
+                var Parent = document.getElementById("tableData");
+                while(Parent.hasChildNodes())
+                {
+                    Parent.removeChild(Parent.firstChild);
+                }
+
+
+
                 
                 var cnt = 0;
+              
                 for (var i = 0; i < data.length; i++) {
                     var row = document.createElement('tr');
                     for (var prop in data[i]) {

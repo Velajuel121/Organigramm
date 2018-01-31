@@ -13,7 +13,7 @@
     <div id="container">
         <div id="reload">
             <a>
-                <img id="imgReload" src="img/reload.svg" onClick="view()" />
+                <img id="imgReload" src="img/reload.svg" onClick="window.location.reload()" />
             </a>
         </div>
         <div>
@@ -23,9 +23,10 @@
         </div>
         <h2>Verfügbare Mitarbeiter</h2>
         <div id="tableData"></div>
-        <button onclick="location.href='addStaff.html'">Add new Worker</button>
+        <button onclick="location.href='addStaff.html'">Arbeiter hinzufügen</button>
     </div>
     <script>
+        window.onload = view;
         function view() {
             const storage = require('electron-json-storage');
             storage.get('staff', function (error, data) {
@@ -56,6 +57,12 @@
                 row.appendChild(head);
                 tbody.appendChild(row);
 
+                var Parent = document.getElementById("tableData");
+                while(Parent.hasChildNodes())
+                {
+                    Parent.removeChild(Parent.firstChild);
+                }
+
                 for (var i = 0; i < data.length; i++) {
                     var row = document.createElement('tr');
                     for (var prop in data[i]) {
@@ -70,6 +77,7 @@
                 table.appendChild(tbody);
                 container.appendChild(table);
             });
+
         }
     </script>
 </body>
