@@ -10,7 +10,6 @@ h1 {
     color: darkgray;
     font-size: 40px;
     text-align: center;
-
 }
 
 h2 {
@@ -19,11 +18,12 @@ h2 {
 }
 
 table {
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-td, th {
+td,
+th {
     width: 200px;
     text-align: center;
 }
@@ -66,13 +66,18 @@ img:hover {
     padding-top: 10px;
 }
 
-#imgStart, #imgAddJobs, #imgViewJobs, #imgViewStaff, #imgAddStaff {
+#imgStart,
+#imgAddJobs,
+#imgViewJobs,
+#imgViewStaff,
+#imgAddStaff {
     width: 110px;
 }
 
 #imgAddStaff {
     width: 90px;
 }
+
 #imgBack {
     width: 40px;
     padding-top: 30px;
@@ -87,7 +92,8 @@ img:hover {
     justify-content: center;
     align-items: center;
     height: 100%;
-  }
+}
+
 button {
     padding-top: 20px;
     background-color: darkgray;

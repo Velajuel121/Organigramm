@@ -12,7 +12,7 @@
     <div id="container">
         <div id="reload">
             <a>
-                <img id="imgReload" src="img/reload.svg" onClick="window.location.reload()"/>
+                <img id="imgReload" src="img/reload.svg" onClick="window.location.reload()" />
             </a>
         </div>
         <div>
@@ -71,6 +71,9 @@
                             skills: k,
                             pay: pay,
                             priority: prio
+                        });
+                        data.sort(function(a, b) {
+                            return a.priority - b.priority;
                         });
                         storage.set('jobs', data, (err) => {
                             if (err) {
