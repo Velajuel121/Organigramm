@@ -23,12 +23,23 @@
         </div>
         <h2>Verfügbare Jobs</h2>
         <div id="tableData"></div>
-        <button onclick="location.href='addJobs.html'">Beruf hinzufügen</button>
+        <div class="centerButton">
+            <button style="margin-right:0.5em" onclick="location.href='addJobs.html'">Job hinzufügen</button>
+            <button style="margin-left: 0.5em" onclick="deleteJobs()">Job löschen</button>
+        </div>
     </div>
     <script>
+        function deleteJobs() {
+            const storage = require('electron-json-storage');
+            storage.remove('jobs', function (error) {
+                if (error) throw error;
+            });
+            location.reload();
+        }
         window.onload = view;
         function view() {
             const storage = require('electron-json-storage');
+            //bubbleSort();
             storage.get('jobs', function (error, data) {
                 if (error) throw error;
                 var container = document.getElementById("tableData");
@@ -50,19 +61,31 @@
                 row.appendChild(head);
                 tbody.appendChild(row);
 
+
                 var Parent = document.getElementById("tableData");
-                while(Parent.hasChildNodes())
-                {
+                while (Parent.hasChildNodes()) {
                     Parent.removeChild(Parent.firstChild);
                 }
+
+
+
+
+                var cnt = 0;
 
                 for (var i = 0; i < data.length; i++) {
                     var row = document.createElement('tr');
                     for (var prop in data[i]) {
+                        cnt++;
                         var cell = document.createElement('td');
                         if (data[i].hasOwnProperty(prop)) {
                             cell.textContent = data[i][prop];
                             row.appendChild(cell);
+
+
+                        }
+                        if (cnt == 4) {
+                            console.log("prio: " + data[i][prop]);
+                            cnt = 0;
                         }
                     }
                     tbody.appendChild(row);
@@ -71,6 +94,41 @@
                 container.appendChild(table);
             });
         }
+
+       /* function bubbleSort() {
+
+            const storage = require('electron-json-storage');
+
+            storage.get('jobs', function (error, data) {
+                if (error) throw error;
+
+                var length = data.length;
+                for (var i = (length - 1); i >= 0; i--) {
+                    //Number of passes
+                    for (var j = (length - i); j > 0; j--) {
+                        console.log("A: " + data[j]);                 //OBJECT
+                        console.log("B: " + data[j - 1]);
+                        //Compare the adjacent positions
+                        if (data[j] < data[j - 1]) {
+                            console.log("A: " + data[j]);
+                            console.log("B: " + data[j - 1]);
+                            //Swap the numbers
+                            var tmp = data[j];
+                            data[j] = data[j - 1];
+                            data[j - 1] = tmp;
+                        }
+                    }
+                }
+                storage.set('jobs', data, (err) => {
+                    if (err) {
+                        console.log(err);
+                    } storage.set
+                });
+            });
+
+
+
+        }*/
     </script>
 </body>
 

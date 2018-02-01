@@ -23,9 +23,19 @@
         </div>
         <h2>Verfügbare Mitarbeiter</h2>
         <div id="tableData"></div>
-        <button onclick="location.href='addStaff.html'">Arbeiter hinzufügen</button>
+        <div class="centerButton">
+            <button style="margin-right:0.5em" onclick="location.href='addStaff.html'">Mitarbeiter hinzufügen</button>
+            <button style="margin-left: 0.5em" onclick="deleteStaff()">Mitarbeiter löschen</button>
+        </div>
     </div>
     <script>
+        function deleteStaff() {
+            const storage = require('electron-json-storage');
+            storage.remove('staff', function (error) {
+                if (error) throw error;
+            });
+            location.reload();
+        }
         window.onload = view;
         function view() {
             const storage = require('electron-json-storage');
@@ -38,13 +48,19 @@
 
                 var row = document.createElement('tr');
                 var head = document.createElement('th');
-                head.textContent = "Bezeichnung";
+                head.textContent = "Name";
                 row.appendChild(head);
                 var head = document.createElement('th');
-                head.textContent = "Kenntnisse";
+                head.textContent = "Titel";
+                row.appendChild(head);
+                var head = document.createElement('th');
+                head.textContent = "Position";
                 row.appendChild(head);
                 var head = document.createElement('th');
                 head.textContent = "Bezahlung";
+                row.appendChild(head);
+                var head = document.createElement('th');
+                head.textContent = "Vorgesetzter";
                 row.appendChild(head);
                 var head = document.createElement('th');
                 head.textContent = "Priorität";
@@ -52,8 +68,7 @@
                 tbody.appendChild(row);
 
                 var Parent = document.getElementById("tableData");
-                while(Parent.hasChildNodes())
-                {
+                while (Parent.hasChildNodes()) {
                     Parent.removeChild(Parent.firstChild);
                 }
 
